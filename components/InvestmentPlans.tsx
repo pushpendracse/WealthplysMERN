@@ -67,7 +67,7 @@ const InvestmentPlans = () => {
           </div>
 
           <div className="flex gap-4">
-            <Button variant="secondary" className="bg-primary text-white hover:scale-500 rounded-lg px-8 py-6 h-auto font-bold">
+            <Button variant="secondary" className="bg-dark hover:bg-dark/5  text-white hover:scale-500 rounded-lg px-8 py-6 h-auto font-bold">
               Direct Plans
             </Button>
             <Button variant="outline" className="rounded-lg border-primary/10 text-primary hover:bg-secondary px-8 py-6 h-auto font-bold">
@@ -97,7 +97,7 @@ const InvestmentPlans = () => {
                       </div>
                     </div>
 
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">{plan.title}</h3>
+                    <h3 className="text-8xl font-bold text-gray-900 mb-2">{plan.title}</h3>
                     <p className="text-gray-600 text-sm mb-8 leading-relaxed line-clamp-2">
                       {plan.desc}
                     </p>
