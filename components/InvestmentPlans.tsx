@@ -53,21 +53,21 @@ const plans = [
 
 const InvestmentPlans = () => {
   return (
-    <section id="plans" className="py-32 bg-white overflow-hidden">
+    <section id="plans" className="py-32 bg-black overflow-hidden">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
+        <div className="flex  md:flex-row md:items-end justify-between gap-8 mb-21">
           <div className="max-w-2xl">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
+            <h2 className="text-3xl md:text-8xl font-bold text-dark mb-1 leading-tight hover:scale-500">
               Institutional Investment Strategies <br />
               <span className="text-primary">Tailored for You.</span>
             </h2>
-            <p className="text-xl text-gray-600 leading-relaxed">
+            <p className="text-xl text-gray-400 leading">
               Choose from our professionally curated strategies designed to maximize returns while managing risk effectively.
             </p>
           </div>
 
           <div className="flex gap-4">
-            <Button variant="secondary" className="bg-primary text-white hover:bg-primary/90 rounded-lg px-8 py-6 h-auto font-bold">
+            <Button variant="secondary" className="bg-primary text-white hover:scale-500 rounded-lg px-8 py-6 h-auto font-bold">
               Direct Plans
             </Button>
             <Button variant="outline" className="rounded-lg border-primary/10 text-primary hover:bg-secondary px-8 py-6 h-auto font-bold">
