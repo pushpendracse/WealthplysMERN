@@ -124,7 +124,7 @@ const InvestmentPlans = () => {
 
   return (
     <section id="plans" className="py-10 md:py-16 bg-[#f8fbff] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6 mb-6 md:mb-10">
           <div className="max-w-2xl">
             <h2 className="text-3xl md:text-3xl font-bold text-dark mb-1 leading-tight">

@@ -31,7 +31,7 @@ const whyChooseUs = [
 const BooksAndFeatures = () => {
   return (
     <section id="expertise" className="py-10 md:py-16 bg-[#f8fbff] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left: Book Section */}
           <motion.div

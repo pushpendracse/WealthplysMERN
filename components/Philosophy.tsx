@@ -19,7 +19,7 @@ const items = [
 const Philosophy = () => {
   return (
     <section className="py-10 md:py-16 bg-[#f8fbff]">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div className="text-center mb-8 md:mb-12 max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-sky-100 text-primary rounded-lg text-xs font-bold uppercase tracking-widest mb-6">
             Our Core Values

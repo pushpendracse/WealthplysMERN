@@ -62,8 +62,8 @@ const Hero = () => {
 
   /* ── Orbit size ── */
   const isMob  = mounted ? window.innerWidth < 768 : false;
-  const orbit  = isMob ? 95 : 165;
-  const cSize  = isMob ? 340 : 460;
+  const orbit  = isMob ? 80 : 165;
+  const cSize  = isMob ? 300 : 460;
 
   const nodes = FEATURES.map((f, i) => {
     const deg = START_DEG + (i / FEATURES.length) * 360;
@@ -86,7 +86,7 @@ const Hero = () => {
       <div className="absolute -bottom-32 right-1/4 w-[450px] h-[450px] rounded-full pointer-events-none blur-[130px]"
         style={{ background: "radial-gradient(circle,rgba(96,165,250,0.07),transparent 70%)" }} />
 
-      <section className="relative max-w-7xl mx-auto px-6 pt-8 pb-10 md:pt-12 md:pb-16">
+      <section className="relative max-w-7xl mx-auto px-5 sm:px-6 pt-8 pb-10 md:pt-12 md:pb-16">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-6 items-center">
 
           {/* ══ LEFT: Rich headline + content ══ */}
