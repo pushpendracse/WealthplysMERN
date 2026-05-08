@@ -34,15 +34,21 @@ const ICON_HALF = 32;
 const tooltipStyle = (deg: number, isMob: boolean): React.CSSProperties => {
   const d = ((deg % 360) + 360) % 360;
   if (isMob) {
-    // On mobile, always show above or below to save horizontal space
-    if (d > 180) return { bottom: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" };
-    return { top: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" };
+    // On mobile: point tooltip inward (toward center) to avoid edge overflow
+    // Icons on the right side of the circle (d < 90 or d > 270) show tooltip on the left
+    // Icons on the left side (90 <= d <= 270) show tooltip on the right
+    const isRightSide = d < 90 || d > 270;
+    if (isRightSide) {
+      return { right: "calc(100% + 8px)", top: "50%", transform: "translateY(-50%)" };
+    }
+    return { left: "calc(100% + 8px)", top: "50%", transform: "translateY(-50%)" };
   }
   if (d >= 315 || d < 45)  return { left: "calc(100% + 12px)", top: "50%", transform: "translateY(-50%)" };
   if (d >= 45 && d < 135)  return { top: "calc(100% + 12px)", left: "50%", transform: "translateX(-50%)" };
   if (d >= 135 && d < 225) return { right: "calc(100% + 12px)", top: "50%", transform: "translateY(-50%)" };
   return { bottom: "calc(100% + 12px)", left: "50%", transform: "translateX(-50%)" };
 };
+
 
 const Hero = () => {
   const [active, setActive]   = useState(0);
@@ -326,7 +332,7 @@ const Hero = () => {
                       )}
                     </motion.div>
 
-                    {/* Label only — no description */}
+                    {/* Label tooltip — LEFT on mobile, position-aware on desktop */}
                     <AnimatePresence>
                       {isActive && (
                         <motion.div
@@ -341,15 +347,15 @@ const Hero = () => {
                             className="rounded-xl overflow-hidden shadow-2xl"
                             style={{
                               minWidth: isMob ? 110 : 170,
-                              maxWidth: isMob ? 130 : 220,
+                              maxWidth: isMob ? 140 : 220,
                               background: "rgba(10,30,74,0.92)",
                               border: "1px solid rgba(34,211,238,0.2)",
                               backdropFilter: "blur(12px)",
                             }}
                           >
                             <div className="h-1 w-full" style={{ background: `linear-gradient(90deg, ${n.from}, ${n.to})` }} />
-                            <div className="px-3.5 py-2.5">
-                              <p className="text-[10px] md:text-[11px] font-bold text-white leading-tight">{n.label}</p>
+                            <div className="px-3 py-2">
+                              <p className="text-[10px] font-bold text-white leading-tight">{n.label}</p>
                             </div>
                           </div>
                         </motion.div>
