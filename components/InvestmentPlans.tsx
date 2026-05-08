@@ -123,26 +123,26 @@ const InvestmentPlans = () => {
   const plans = activeTab === "direct" ? directPlans : advisoryPlans;
 
   return (
-    <section id="plans" className="py-32 bg-[#f8fbff] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex  md:flex-row md:items-end justify-between gap-8 mb-21">
+    <section id="plans" className="py-10 md:py-16 bg-[#f8fbff] overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6 mb-6 md:mb-10">
           <div className="max-w-2xl">
             <h2 className="text-3xl md:text-3xl font-bold text-dark mb-1 leading-tight">
               Institutional Investment Strategies <br />
               <span className="text-primary">Tailored for You.</span>
             </h2>
-            <p className="text-xl text-gray-400 leading">
+            <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
               Choose from our professionally curated strategies designed to maximize returns while managing risk effectively.
             </p>
           </div>
 
-          <div className="flex gap-4">
+          <div className="flex gap-3 sm:gap-4 w-full md:w-auto">
             <button
               type="button"
               onClick={() => setActiveTab("direct")}
-              className={`rounded-lg px-8 py-6 h-auto font-bold transition-all ${
+              className={`flex-1 md:flex-none rounded-lg px-6 py-4 md:px-8 md:py-6 h-auto font-bold transition-all ${
                 activeTab === "direct"
-                  ? "bg-primary text-white"
+                  ? "bg-primary text-white shadow-lg shadow-primary/20"
                   : "border border-primary/10 text-primary bg-white/90 hover:bg-secondary"
               }`}
             >
@@ -151,9 +151,9 @@ const InvestmentPlans = () => {
             <button
               type="button"
               onClick={() => setActiveTab("advisory")}
-              className={`rounded-lg px-8 py-6 h-auto font-bold transition-all ${
+              className={`flex-1 md:flex-none rounded-lg px-6 py-4 md:px-8 md:py-6 h-auto font-bold transition-all ${
                 activeTab === "advisory"
-                  ? "bg-primary text-white"
+                  ? "bg-primary text-white shadow-lg shadow-primary/20"
                   : "border border-primary/10 text-primary bg-white/90 hover:bg-secondary"
               }`}
             >
@@ -173,8 +173,8 @@ const InvestmentPlans = () => {
             <CarouselContent className="-ml-6">
               {plans.map((plan, i) => (
                 <CarouselItem key={i} className="pl-6 md:basis-1/2 lg:basis-1/3">
-                  <div className="p-10 rounded-lg h-full border border-sky-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col bg-white">
-                    <div className="mb-8 flex justify-between items-start">
+                  <div className="p-6 rounded-lg h-full border border-sky-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col bg-white">
+                    <div className="mb-4 flex justify-between items-start">
                       <div className="p-4 bg-white rounded-lg shadow-sm">
                         {plan.icon}
                       </div>
@@ -189,12 +189,12 @@ const InvestmentPlans = () => {
                     </p>
 
                     <div className="mt-auto">
-                      <div className="mb-8">
+                      <div className="mb-4">
                         <div className="text-[10px] text-gray-500 font-bold uppercase tracking-wider mb-1">Estimated Annual Returns</div>
                         <div className="text-4xl font-black text-primary tracking-tight">{plan.returns}</div>
                       </div>
 
-                      <div className="space-y-3 mb-10">
+                      <div className="space-y-2 mb-6">
                         {plan.features.map((feature, j) => (
                           <div key={j} className="flex items-center gap-2 text-sm font-medium text-gray-700">
                             <CheckCircle2 className="w-4 h-4 text-primary" />
@@ -211,9 +211,9 @@ const InvestmentPlans = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <div className="flex justify-end gap-2 mt-12">
-              <CarouselPrevious className="static translate-y-0 rounded-lg w-12 h-12 border-primary/10 text-primary hover:bg-secondary" />
-              <CarouselNext className="static translate-y-0 rounded-lg w-12 h-12 bg-primary text-white hover:bg-primary/90 border-none" />
+            <div className="flex justify-end gap-2 mt-4 md:mt-6">
+              <CarouselPrevious className="static translate-y-0 rounded-lg w-10 h-10 md:w-12 md:h-12 border-primary/10 text-primary hover:bg-secondary" />
+              <CarouselNext className="static translate-y-0 rounded-lg w-10 h-10 md:w-12 md:h-12 bg-primary text-white hover:bg-primary/90 border-none" />
             </div>
           </Carousel>
         </div>

@@ -31,8 +31,13 @@ const FEATURES = [
 const START_DEG = 195;
 const ICON_HALF = 32;
 
-const tooltipStyle = (deg: number): React.CSSProperties => {
+const tooltipStyle = (deg: number, isMob: boolean): React.CSSProperties => {
   const d = ((deg % 360) + 360) % 360;
+  if (isMob) {
+    // On mobile, always show above or below to save horizontal space
+    if (d > 180) return { bottom: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" };
+    return { top: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" };
+  }
   if (d >= 315 || d < 45)  return { left: "calc(100% + 12px)", top: "50%", transform: "translateY(-50%)" };
   if (d >= 45 && d < 135)  return { top: "calc(100% + 12px)", left: "50%", transform: "translateX(-50%)" };
   if (d >= 135 && d < 225) return { right: "calc(100% + 12px)", top: "50%", transform: "translateY(-50%)" };
@@ -51,8 +56,8 @@ const Hero = () => {
 
   /* ── Orbit size ── */
   const isMob  = mounted ? window.innerWidth < 768 : false;
-  const orbit  = isMob ? 110 : 165;
-  const cSize  = isMob ? 310 : 460;
+  const orbit  = isMob ? 95 : 165;
+  const cSize  = isMob ? 340 : 460;
 
   const nodes = FEATURES.map((f, i) => {
     const deg = START_DEG + (i / FEATURES.length) * 360;
@@ -75,7 +80,7 @@ const Hero = () => {
       <div className="absolute -bottom-32 right-1/4 w-[450px] h-[450px] rounded-full pointer-events-none blur-[130px]"
         style={{ background: "radial-gradient(circle,rgba(96,165,250,0.07),transparent 70%)" }} />
 
-      <section className="relative max-w-7xl mx-auto px-4 pt-10 pb-32 md:pt-16 md:pb-36">
+      <section className="relative max-w-7xl mx-auto px-6 pt-8 pb-10 md:pt-12 md:pb-16">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-6 items-center">
 
           {/* ══ LEFT: Rich headline + content ══ */}
@@ -108,7 +113,7 @@ const Hero = () => {
               Tomorrow.
             </h1>
 
-            <p className="text-lg text-gray-500 mb-8 max-w-lg leading-relaxed">
+            <p className="text-lg text-gray-500 mb-8 max-w-lg leading-relaxed px-1">
               We empower individuals with professional-grade wealth management
               tools, expert-led strategies, and institutional-level security.
             </p>
@@ -116,7 +121,7 @@ const Hero = () => {
             {/* CTA row */}
             <div className="flex flex-col sm:flex-row gap-4 mb-10">
               <Button
-                className="h-14 px-8 rounded-xl text-base font-bold text-white shadow-lg shadow-primary/25 relative overflow-hidden group border-0"
+                className="h-12 md:h-14 px-8 rounded-xl text-base font-bold text-white shadow-lg shadow-primary/25 relative overflow-hidden group border-0"
                 style={{ background: "linear-gradient(135deg,#1d4ed8,#0891b2)" }}
               >
                 <motion.span
@@ -129,14 +134,14 @@ const Hero = () => {
               </Button>
               <Button
                 variant="outline"
-                className="h-14 px-8 rounded-xl border-gray-200 text-gray-700 hover:bg-gray-50 text-base font-bold"
+                className="h-12 md:h-14 px-8 rounded-xl border-gray-200 text-gray-700 hover:bg-gray-50 text-base font-bold"
               >
                 View Portfolio
               </Button>
             </div>
 
             {/* Stats strip */}
-            <div className="flex gap-6 mb-10 pb-8 border-b border-gray-100">
+            <div className="flex gap-6 mb-6 pb-6 border-b border-gray-100">
               {[
                 { value: "₹500Cr+", label: "Assets Managed" },
                 { value: "10K+",    label: "Clients Served" },
@@ -326,7 +331,7 @@ const Hero = () => {
                       {isActive && (
                         <motion.div
                           className="absolute z-[200] pointer-events-none"
-                          style={tooltipStyle(n.deg)}
+                          style={tooltipStyle(n.deg, isMob)}
                           initial={{ opacity: 0, scale: 0.8, y: 4 }}
                           animate={{ opacity: 1, scale: 1, y: 0 }}
                           exit={{ opacity: 0, scale: 0.8, y: 4 }}
@@ -335,8 +340,8 @@ const Hero = () => {
                           <div
                             className="rounded-xl overflow-hidden shadow-2xl"
                             style={{
-                              minWidth: 170,
-                              maxWidth: 220,
+                              minWidth: isMob ? 110 : 170,
+                              maxWidth: isMob ? 130 : 220,
                               background: "rgba(10,30,74,0.92)",
                               border: "1px solid rgba(34,211,238,0.2)",
                               backdropFilter: "blur(12px)",
@@ -344,7 +349,7 @@ const Hero = () => {
                           >
                             <div className="h-1 w-full" style={{ background: `linear-gradient(90deg, ${n.from}, ${n.to})` }} />
                             <div className="px-3.5 py-2.5">
-                              <p className="text-[11px] font-bold text-white leading-snug">{n.label}</p>
+                              <p className="text-[10px] md:text-[11px] font-bold text-white leading-tight">{n.label}</p>
                             </div>
                           </div>
                         </motion.div>
@@ -376,15 +381,15 @@ const Hero = () => {
                 />
                 <div className="absolute rounded-full" style={{ width: 158, height: 158, border: "2px solid rgba(34,211,238,0.10)" }} />
 
-                <div
-                  className="relative rounded-full overflow-hidden"
-                  style={{
-                    width: 150,
-                    height: 150,
-                    border: "3px solid rgba(34,211,238,0.35)",
-                    boxShadow: "0 0 30px rgba(34,211,238,0.15), 0 4px 20px rgba(0,0,0,0.4)",
-                  }}
-                >
+                  <div
+                    className="relative rounded-full overflow-hidden"
+                    style={{
+                      width: isMob ? 110 : 150,
+                      height: isMob ? 110 : 150,
+                      border: "3px solid rgba(34,211,238,0.35)",
+                      boxShadow: "0 0 30px rgba(34,211,238,0.15), 0 4px 20px rgba(0,0,0,0.4)",
+                    }}
+                  >
                   <Image
                     src="/centre-person.webp"
                     alt="Wealth Advisor"

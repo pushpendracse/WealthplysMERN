@@ -30,15 +30,15 @@ const whyChooseUs = [
 
 const BooksAndFeatures = () => {
   return (
-    <section id="expertise" className="py-32 bg-[#f8fbff] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-24 items-center">
+    <section id="expertise" className="py-10 md:py-16 bg-[#f8fbff] overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left: Book Section */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="flex flex-col md:flex-row items-center gap-12"
+            className="flex flex-col md:flex-row items-center gap-8"
           >
             <div className="relative w-full max-w-[320px] aspect-[3/4] bg-gradient-to-br from-[#eff6ff] to-[#dbeafe] rounded-r-lg rounded-l-sm shadow-[0_35px_60px_-35px_rgba(15,23,42,0.25)] overflow-hidden border border-sky-200 transform -rotate-3 hover:rotate-0 transition-transform duration-500 flex flex-col items-center justify-center p-8 text-center">
               <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10" />
@@ -65,7 +65,7 @@ const BooksAndFeatures = () => {
           </motion.div>
 
           {/* Right: Features Grid */}
-          <div className="grid sm:grid-cols-2 gap-8">
+          <div className="grid sm:grid-cols-2 gap-4">
             {whyChooseUs.map((feature, i) => (
               <motion.div
                 key={i}
@@ -73,12 +73,12 @@ const BooksAndFeatures = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="p-8 bg-white rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-shadow group"
+                className="p-5 bg-white rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-shadow group"
               >
-                <div className="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <div className="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
                   {feature.icon}
                 </div>
-                <h4 className="text-lg font-bold text-gray-900 mb-3">{feature.title}</h4>
+                <h4 className="text-base font-bold text-gray-900 mb-2">{feature.title}</h4>
                 <p className="text-sm text-gray-500 leading-relaxed">
                   {feature.desc}
                 </p>
@@ -90,7 +90,7 @@ const BooksAndFeatures = () => {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="sm:col-span-2 p-8 bg-primary rounded-lg text-white flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl shadow-primary/20"
+              className="sm:col-span-2 p-6 bg-primary rounded-lg text-white flex flex-col md:flex-row items-center justify-between gap-4 shadow-xl shadow-primary/20"
             >
               <div className="text-center md:text-left">
                 <h4 className="text-xl font-bold mb-2">Ready to secure your future?</h4>

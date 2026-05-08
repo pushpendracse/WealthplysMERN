@@ -18,9 +18,9 @@ const items = [
 
 const Philosophy = () => {
   return (
-    <section className="py-32 bg-[#f8fbff]">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="text-center mb-24 max-w-3xl mx-auto">
+    <section className="py-10 md:py-16 bg-[#f8fbff]">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8">
+        <div className="text-center mb-8 md:mb-12 max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-sky-100 text-primary rounded-lg text-xs font-bold uppercase tracking-widest mb-6">
             Our Core Values
           </div>
@@ -32,29 +32,29 @@ const Philosophy = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
           {items.map((item, i) => (
             <motion.div
               key={i}
               whileHover={{ y: -8, backgroundColor: "var(--secondary)" }}
-              className="p-10 bg-white rounded-lg border border-sky-100 hover:border-primary/10 flex flex-col items-center text-center transition-all duration-300"
+              className="p-6 bg-white rounded-lg border border-sky-100 hover:border-primary/10 flex flex-col items-center text-center transition-all duration-300"
             >
-              <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center text-primary shadow-sm mb-8 group-hover:bg-primary group-hover:text-white transition-colors">
+              <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center text-primary shadow-sm mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
                 {item.icon}
               </div>
-              <h4 className="text-xl font-bold text-gray-900 mb-4">{item.title}</h4>
+              <h4 className="text-base font-bold text-gray-900 mb-2">{item.title}</h4>
               <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
             </motion.div>
           ))}
         </div>
 
-        <div className="mt-20 flex flex-col items-center gap-8">
+        <div className="mt-8 md:mt-12 flex flex-col items-center gap-6 text-center px-4">
           <p className="text-gray-500 font-medium">Want to know more about our journey and leadership?</p>
-          <div className="flex gap-4">
-            <Button className="bg-primary hover:bg-primary/90 text-white rounded-lg h-14 px-10 font-bold">
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+            <Button className="flex-1 sm:flex-none bg-primary hover:bg-primary/90 text-white rounded-lg h-12 md:h-14 px-8 md:px-10 font-bold">
               About WealthPlus
             </Button>
-            <Button variant="outline" className="border-gray-200 text-gray-700 hover:bg-gray-50 rounded-lg h-14 px-10 font-bold">
+            <Button variant="outline" className="flex-1 sm:flex-none border-gray-200 text-gray-700 hover:bg-gray-50 rounded-lg h-12 md:h-14 px-8 md:px-10 font-bold">
               Meet the Team <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
           </div>
