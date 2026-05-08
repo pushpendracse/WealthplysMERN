@@ -29,7 +29,7 @@ const Navbar = () => {
     <nav
       className="fixed top-0 w-full z-[100] bg-white/95 backdrop-blur-md border-b border-gray-100 py-3 md:py-4 shadow-sm"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-10">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center gap-2">
             <Image

@@ -147,21 +147,21 @@ const Hero = () => {
             </div>
 
             {/* Stats strip */}
-            <div className="flex gap-6 mb-6 pb-6 border-b border-gray-100">
+            <div className="flex justify-between gap-2 md:gap-6 mb-6 pb-6 border-b border-gray-100">
               {[
                 { value: "₹500Cr+", label: "Assets Managed" },
                 { value: "10K+",    label: "Clients Served" },
                 { value: "15+",     label: "Years of Trust" },
               ].map((s, i) => (
-                <div key={i} className={`flex flex-col ${i > 0 ? "pl-6 border-l border-gray-100" : ""}`}>
-                  <span className="text-2xl font-bold text-gray-900">{s.value}</span>
-                  <span className="text-xs text-gray-400 font-medium mt-0.5">{s.label}</span>
+                <div key={i} className={`flex flex-col ${i > 0 ? "pl-3 md:pl-6 border-l border-gray-100" : ""}`}>
+                  <span className="text-xl md:text-2xl font-bold text-gray-900">{s.value}</span>
+                  <span className="text-[10px] md:text-xs text-gray-400 font-medium mt-0.5 whitespace-nowrap">{s.label}</span>
                 </div>
               ))}
             </div>
 
             {/* Trust badges */}
-            <div className="flex flex-wrap gap-5">
+            <div className="flex flex-wrap gap-x-6 gap-y-3">
               {[
                 { icon: <Shield className="w-4 h-4" />, text: "SEBI Registered" },
                 { icon: <Lock className="w-4 h-4" />, text: "Bank Grade Security" },
