@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState, useRef } from "react";
+import { AnimatePresence, m, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
   ArrowRight,
@@ -34,9 +34,6 @@ const ICON_HALF = 32;
 const tooltipStyle = (deg: number, isMob: boolean): React.CSSProperties => {
   const d = ((deg % 360) + 360) % 360;
   if (isMob) {
-    // On mobile: point tooltip inward (toward center) to avoid edge overflow
-    // Icons on the right side of the circle (d < 90 or d > 270) show tooltip on the left
-    // Icons on the left side (90 <= d <= 270) show tooltip on the right
     const isRightSide = d < 90 || d > 270;
     if (isRightSide) {
       return { right: "calc(100% + 8px)", top: "50%", transform: "translateY(-50%)" };
@@ -53,12 +50,15 @@ const tooltipStyle = (deg: number, isMob: boolean): React.CSSProperties => {
 const Hero = () => {
   const [active, setActive]   = useState(0);
   const [mounted, setMounted] = useState(false);
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef);
 
   useEffect(() => { setMounted(true); }, []);
   useEffect(() => {
+    if (!isInView) return;
     const id = setInterval(() => setActive((p) => (p + 1) % FEATURES.length), 2800);
     return () => clearInterval(id);
-  }, []);
+  }, [isInView]);
 
   /* ── Orbit size ── */
   const isMob  = mounted ? window.innerWidth < 768 : false;
@@ -73,6 +73,7 @@ const Hero = () => {
 
   return (
     <div
+      ref={containerRef}
       className="relative min-h-screen overflow-hidden"
       style={{ background: "linear-gradient(165deg,#ffffff 0%,#f0f9ff 40%,#bae6fd 100%)" }}
     >
@@ -90,7 +91,7 @@ const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-6 items-center">
 
           {/* ══ LEFT: Rich headline + content ══ */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, ease: "easeOut" }}
@@ -98,7 +99,7 @@ const Hero = () => {
           >
             {/* Animated live badge */}
             <div className="inline-flex items-center gap-2.5 self-start px-4 py-2 rounded-full bg-primary/8 text-primary text-sm font-bold mb-6 border border-primary/20 shadow-sm">
-              <motion.span
+              <m.span
                 className="w-2 h-2 rounded-full bg-primary"
                 animate={{ scale: [1, 1.5, 1], opacity: [1, 0.4, 1] }}
                 transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
@@ -130,7 +131,7 @@ const Hero = () => {
                 className="h-12 md:h-14 px-8 rounded-xl text-base font-bold text-white shadow-lg shadow-primary/25 relative overflow-hidden group border-0"
                 style={{ background: "linear-gradient(135deg,#1d4ed8,#0891b2)" }}
               >
-                <motion.span
+                <m.span
                   className="absolute inset-0 bg-white/10"
                   initial={{ x: "-100%" }}
                   whileHover={{ x: "100%" }}
@@ -173,10 +174,10 @@ const Hero = () => {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </m.div>
 
           {/* ══ RIGHT: Compact Orbital + Person ══ */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.85, delay: 0.15, ease: "easeOut" }}
@@ -206,7 +207,7 @@ const Hero = () => {
                   <path d="M0 0 L10 5 L0 10 Z" fill="#22d3ee" />
                 </marker>
               </defs>
-              <motion.path
+              <m.path
                 d="M 20 300 Q 10 160 120 20"
                 stroke="#22d3ee"
                 strokeWidth="3"
@@ -223,13 +224,13 @@ const Hero = () => {
               style={{ width: cSize || 400, height: cSize || 400 }}
             >
               {/* Orbit rings — cyan tint */}
-              <motion.div
+              <m.div
                 className="absolute inset-0 rounded-full"
                 style={{ border: "1.5px solid rgba(34,211,238,0.12)" }}
                 animate={{ rotate: 360 }}
                 transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
               />
-              <motion.div
+              <m.div
                 className="absolute rounded-full"
                 style={{ inset: "-6%", border: "1px solid rgba(34,211,238,0.06)" }}
                 animate={{ rotate: -360 }}
@@ -246,7 +247,7 @@ const Hero = () => {
               />
 
               {/* Conic sweep — cyan family */}
-              <motion.div
+              <m.div
                 className="absolute inset-0 rounded-full"
                 style={{
                   background:
@@ -269,7 +270,7 @@ const Hero = () => {
                   const ex = 50 + (n.x / sz) * 100;
                   const ey = 50 + (n.y / sz) * 100;
                   return (
-                    <motion.line
+                    <m.line
                       key={i}
                       x1="50%" y1="50%"
                       x2={`${ex}%`} y2={`${ey}%`}
@@ -288,7 +289,7 @@ const Hero = () => {
                 const Icon = n.icon;
                 const isActive = active === i;
                 return (
-                  <motion.div
+                  <m.div
                     key={i}
                     className="absolute"
                     style={{
@@ -302,7 +303,7 @@ const Hero = () => {
                     onMouseEnter={() => setActive(i)}
                   >
                     {isActive && (
-                      <motion.div
+                      <m.div
                         className="absolute inset-0 rounded-full blur-xl"
                         style={{ background: n.ring, scale: 1.5 }}
                         animate={{ opacity: [0.5, 0.9, 0.5] }}
@@ -310,7 +311,7 @@ const Hero = () => {
                       />
                     )}
 
-                    <motion.div
+                    <m.div
                       className="relative w-16 h-16 rounded-full flex items-center justify-center shadow-2xl cursor-pointer"
                       style={{
                         background: `linear-gradient(145deg, ${n.from}, ${n.to})`,
@@ -323,19 +324,19 @@ const Hero = () => {
                     >
                       <Icon className="w-7 h-7 text-white drop-shadow-sm" />
                       {isActive && (
-                        <motion.span
+                        <m.span
                           className="absolute inset-0 rounded-full"
                           style={{ background: `linear-gradient(145deg, ${n.from}, ${n.to})` }}
                           animate={{ scale: [1, 2.2], opacity: [0.35, 0] }}
                           transition={{ duration: 1.6, repeat: Infinity, ease: "easeOut" }}
                         />
                       )}
-                    </motion.div>
+                    </m.div>
 
                     {/* Label tooltip — LEFT on mobile, position-aware on desktop */}
                     <AnimatePresence>
                       {isActive && (
-                        <motion.div
+                        <m.div
                           className="absolute z-[200] pointer-events-none"
                           style={tooltipStyle(n.deg, isMob)}
                           initial={{ opacity: 0, scale: 0.8, y: 4 }}
@@ -358,28 +359,28 @@ const Hero = () => {
                               <p className="text-[10px] font-bold text-white leading-tight">{n.label}</p>
                             </div>
                           </div>
-                        </motion.div>
+                        </m.div>
                       )}
                     </AnimatePresence>
-                  </motion.div>
+                  </m.div>
                 );
               })}
 
               {/* Center person */}
-              <motion.div
+              <m.div
                 className="relative z-20 flex items-center justify-center"
                 initial={{ scale: 0, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.9, ease: [0.34, 1.26, 0.64, 1] }}
               >
                 {/* Cyan glow */}
-                <motion.div
+                <m.div
                   className="absolute rounded-full blur-3xl"
                   style={{ width: 180, height: 180, background: "radial-gradient(circle,rgba(34,211,238,0.15),transparent 70%)" }}
                   animate={{ scale: [1, 1.15, 1], opacity: [0.6, 1, 0.6] }}
                   transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
                 />
-                <motion.div
+                <m.div
                   className="absolute rounded-full"
                   style={{ width: 180, height: 180, border: "2px solid rgba(34,211,238,0.18)" }}
                   animate={{ scale: [1, 1.18, 1], opacity: [0.4, 0, 0.4] }}
@@ -400,11 +401,12 @@ const Hero = () => {
                     src="/centre-person.webp"
                     alt="Wealth Advisor"
                     fill
+                    sizes="(max-width: 768px) 110px, 150px"
                     className="object-cover object-top"
                     priority
                   />
                 </div>
-              </motion.div>
+              </m.div>
 
               {/* Progress dots — cyan */}
               <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 flex gap-2">
@@ -422,7 +424,7 @@ const Hero = () => {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
     </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Target, Lightbulb, Users, BarChart, Shield, Zap, Globe, Briefcase, ArrowRight } from "lucide-react";
 
@@ -34,8 +34,12 @@ const Philosophy = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
           {items.map((item, i) => (
-            <motion.div
+            <m.div
               key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
               whileHover={{ y: -8, backgroundColor: "var(--secondary)" }}
               className="p-6 bg-white rounded-lg border border-sky-100 hover:border-primary/10 flex flex-col items-center text-center transition-all duration-300"
             >
@@ -44,7 +48,7 @@ const Philosophy = () => {
               </div>
               <h4 className="text-base font-bold text-gray-900 mb-2">{item.title}</h4>
               <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
-            </motion.div>
+            </m.div>
           ))}
         </div>
 

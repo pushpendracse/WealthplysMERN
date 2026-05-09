@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { BookOpen, CheckCircle2, Star, ShieldCheck, Zap, Briefcase } from "lucide-react";
 
@@ -34,7 +34,7 @@ const BooksAndFeatures = () => {
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left: Book Section */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -62,12 +62,12 @@ const BooksAndFeatures = () => {
                 Download PDF
               </Button>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Right: Features Grid */}
           <div className="grid sm:grid-cols-2 gap-4">
             {whyChooseUs.map((feature, i) => (
-              <motion.div
+              <m.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -82,11 +82,11 @@ const BooksAndFeatures = () => {
                 <p className="text-sm text-gray-500 leading-relaxed">
                   {feature.desc}
                 </p>
-              </motion.div>
+              </m.div>
             ))}
 
             {/* CTA Card */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
@@ -99,7 +99,7 @@ const BooksAndFeatures = () => {
               <Button className="bg-white text-primary hover:bg-white/90 rounded-lg h-12 px-8 font-bold shrink-0">
                 Get Started Now
               </Button>
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </div>

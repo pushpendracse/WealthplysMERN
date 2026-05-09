@@ -1,17 +1,14 @@
+import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
-// import Hero from "@/components/Hero";
 import Hero from "@/components/Hero";
 import MarketStats from "@/components/MarketStats";
-import InvestmentPlans from "@/components/InvestmentPlans";
-import BooksAndFeatures from "@/components/BooksAndFeatures";
-import Philosophy from "@/components/Philosophy";
-// import Masterclass from "@/components/Masterclass";
-// import KnowledgeCenter from "@/components/KnowledgeCenter";
-// import SecuritySection from "@/components/SecuritySection";
-// import BlogSection from "@/components/BlogSection";
-import Testimonials from "@/components/Testimonials";
-import Footer from "@/components/Footer";
-import EconomyIndicator from "@/components/EconomyIndicator";
+
+// Dynamically import components below the fold for better performance
+const EconomyIndicator = dynamic(() => import("@/components/EconomyIndicator"), { ssr: true });
+const InvestmentPlans = dynamic(() => import("@/components/InvestmentPlans"), { ssr: true });
+const BooksAndFeatures = dynamic(() => import("@/components/BooksAndFeatures"), { ssr: true });
+const Philosophy = dynamic(() => import("@/components/Philosophy"), { ssr: true });
+const Footer = dynamic(() => import("@/components/Footer"), { ssr: true });
 
 export default function Home() {
   return (
@@ -21,14 +18,8 @@ export default function Home() {
       <MarketStats />
       <EconomyIndicator />
       <InvestmentPlans />
-     
       <BooksAndFeatures />
       <Philosophy />
-      {/* <Masterclass /> */}
-      {/* <KnowledgeCenter /> */}
-      {/* <SecuritySection /> */}
-      {/* <BlogSection /> */}
-      {/* <Testimonials /> */}
       <Footer />
     </main>
   );

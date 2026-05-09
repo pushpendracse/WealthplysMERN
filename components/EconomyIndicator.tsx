@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { m, useInView } from "framer-motion";
 
 const marketData = [
   { symbol: "GDP Growth Rate", change: "7.8%" },
@@ -14,11 +14,14 @@ const marketData = [
   { symbol: "Nifty Bank", change: "-0.15%" },
 ];
 
-const MarketStats = () => {
+const EconomyIndicator = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref);
+
   return (
-    <div className="bg-[#000d21] border-y border-white/5 py-4 overflow-hidden">
-      <motion.div
-        animate={{ x: ["0%", "-50%"] }}
+    <div ref={ref} className="bg-[#000d21] border-y border-white/5 py-4 overflow-hidden">
+      <m.div
+        animate={isInView ? { x: ["0%", "-50%"] } : { x: "0%" }}
         transition={{
           duration: 30,
           repeat: Infinity,
@@ -38,9 +41,9 @@ const MarketStats = () => {
             </span>
           </div>
         ))}
-      </motion.div>
+      </m.div>
     </div>
   );
 };
 
-export default MarketStats;
+export default EconomyIndicator;
