@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { Menu, X } from "lucide-react";
+import { Menu, X, PanelLeft } from "lucide-react";
 
 interface NavbarProps {
   onToggleSidebar?: () => void;
@@ -44,7 +44,7 @@ const Navbar = ({ onToggleSidebar, isSidebarOpen }: NavbarProps) => {
                 onClick={onToggleSidebar}
                 className="lg:hidden p-2 -ml-2 text-gray-900 hover:bg-gray-50 rounded-xl transition-all"
               >
-                {isSidebarOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                {isSidebarOpen ? <X className="w-6 h-6" /> : <PanelLeft className="w-6 h-6" />}
               </button>
             )}
             

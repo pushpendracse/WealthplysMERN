@@ -27,17 +27,17 @@ export const ReportHeader = ({ title, subtitle, riskScore = "6.4/10" }: { title:
         {subtitle}
       </m.p>
     </div>
-    <div className="flex items-center gap-3 w-full sm:w-auto">
-      <div className="bg-white/80 backdrop-blur-sm px-4 py-2.5 rounded-2xl border border-primary/10 text-[11px] font-black text-primary shadow-sm flex items-center gap-2 uppercase tracking-widest">
+    <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto mt-4 sm:mt-0">
+      <div className="bg-white/80 backdrop-blur-sm px-4 py-2.5 rounded-2xl border border-primary/10 text-[10px] sm:text-[11px] font-black text-primary shadow-sm flex items-center justify-center gap-2 uppercase tracking-widest flex-1 sm:flex-none min-w-[120px]">
         <m.span 
           animate={{ scale: [1, 1.2, 1] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="w-1.5 h-1.5 rounded-full bg-primary" 
+          className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" 
         />
-        Risk: {riskScore}
+        <span className="truncate">Risk: {riskScore}</span>
       </div>
-      <Button variant="outline" className="h-11 px-5 rounded-2xl border-gray-200 bg-white shadow-sm hover:bg-gray-50 transition-all font-bold text-xs uppercase tracking-widest gap-2">
-        <Download className="w-3.5 h-3.5" /> PDF Report
+      <Button variant="outline" className="h-11 px-4 sm:px-5 rounded-2xl border-gray-200 bg-white shadow-sm hover:bg-gray-50 transition-all font-bold text-[10px] sm:text-xs uppercase tracking-widest gap-2 flex-1 sm:flex-none min-w-[120px]">
+        <Download className="w-3.5 h-3.5 flex-shrink-0" /> <span className="truncate">PDF Report</span>
       </Button>
     </div>
   </div>

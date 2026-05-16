@@ -59,7 +59,7 @@ const ReportLayout = ({ children }: { children: React.ReactNode }) => {
         {/* Sidebar - Positioned below Navbar */}
         <aside className={`
           fixed lg:sticky top-[80px] h-[calc(100vh-80px)] flex flex-col z-[40] transition-all duration-500 ease-in-out
-          bg-white border-r border-gray-100 shadow-[0_0_40px_rgba(0,0,0,0.03)]
+          bg-white border-r border-gray-100 shadow-[0_0_40px_rgba(0,0,0,0.03)] overflow-hidden
           ${isSidebarOpen ? 'translate-x-0 w-72' : '-translate-x-full w-0 lg:translate-x-0 lg:w-72'}
         `}>
           
@@ -123,17 +123,17 @@ const ReportLayout = ({ children }: { children: React.ReactNode }) => {
         {/* Content Viewport */}
         <div className="flex-1 min-w-0 bg-[#f8fafc] flex flex-col">
            {/* Institutional Badge - Moved to top of content since Header was removed */}
-           <div className="px-6 lg:px-10 py-4 flex items-center justify-between bg-white border-b border-gray-100">
-              <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-primary/8 text-primary text-[10px] font-black border border-primary/20 uppercase tracking-widest">
+           <div className="px-4 sm:px-6 lg:px-10 py-3 sm:py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-white border-b border-gray-100">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-primary/8 text-primary text-[8px] sm:text-[10px] font-black border border-primary/20 uppercase tracking-widest whitespace-nowrap overflow-hidden max-w-full">
                 <m.span
-                  className="w-1.5 h-1.5 rounded-full bg-primary"
+                  className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0"
                   animate={{ scale: [1, 1.5, 1], opacity: [1, 0.4, 1] }}
                   transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
                 />
-                <TrendingUp className="w-3.5 h-3.5" />
-                Institutional-Grade Platform
+                <TrendingUp className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" />
+                <span className="truncate">Institutional-Grade Platform</span>
               </div>
-              <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+              <div className="text-[8px] sm:text-[10px] font-bold text-gray-400 uppercase tracking-widest hidden sm:block">
                 MF Analyser Report
               </div>
            </div>
