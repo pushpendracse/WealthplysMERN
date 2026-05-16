@@ -20,12 +20,12 @@ import Image from "next/image";
 
 /* ── Exact banner feature data ── */
 const FEATURES = [
-  { icon: Briefcase,    label: "One-Click Portfolio Rebalancing",                 from: "#1d4ed8", to: "#1e3a8a", ring: "rgba(29,78,216,0.4)" },
-  { icon: BarChart2,    label: "One-Click Execution via Zerodha",                 from: "#16a34a", to: "#14532d", ring: "rgba(22,163,74,0.4)" },
-  { icon: Eye,          label: "Zero Human Error, Full Transparency",              from: "#0284c7", to: "#0369a1", ring: "rgba(2,132,199,0.4)" },
-  { icon: Settings2,    label: "Bridge the Advice Execution Gap Instanly",         from: "#ea580c", to: "#9a3412", ring: "rgba(234,88,12,0.4)" },
-  { icon: Brain,        label: "Sophisticated Insights, Effortless Execution",     from: "#0d9488", to: "#0f766e", ring: "rgba(13,148,136,0.4)" },
-  { icon: MousePointer2,label: "One-Click Execution for Advisory Recommendations", from: "#78716c", to: "#44403c", ring: "rgba(120,113,108,0.4)" },
+  { icon: Briefcase, label: "One-Click Portfolio Rebalancing", from: "#1d4ed8", to: "#1e3a8a", ring: "rgba(29,78,216,0.4)" },
+  { icon: BarChart2, label: "One-Click Execution via Zerodha", from: "#16a34a", to: "#14532d", ring: "rgba(22,163,74,0.4)" },
+  { icon: Eye, label: "Zero Human Error, Full Transparency", from: "#0284c7", to: "#0369a1", ring: "rgba(2,132,199,0.4)" },
+  { icon: Settings2, label: "Bridge the Advice Execution Gap Instanly", from: "#ea580c", to: "#9a3412", ring: "rgba(234,88,12,0.4)" },
+  { icon: Brain, label: "Sophisticated Insights, Effortless Execution", from: "#0d9488", to: "#0f766e", ring: "rgba(13,148,136,0.4)" },
+  { icon: MousePointer2, label: "One-Click Execution for Advisory Recommendations", from: "#78716c", to: "#44403c", ring: "rgba(120,113,108,0.4)" },
 ];
 
 const START_DEG = 195;
@@ -40,15 +40,15 @@ const tooltipStyle = (deg: number, isMob: boolean): React.CSSProperties => {
     }
     return { left: "calc(100% + 8px)", top: "50%", transform: "translateY(-50%)" };
   }
-  if (d >= 315 || d < 45)  return { left: "calc(100% + 12px)", top: "50%", transform: "translateY(-50%)" };
-  if (d >= 45 && d < 135)  return { top: "calc(100% + 12px)", left: "50%", transform: "translateX(-50%)" };
+  if (d >= 315 || d < 45) return { left: "calc(100% + 12px)", top: "50%", transform: "translateY(-50%)" };
+  if (d >= 45 && d < 135) return { top: "calc(100% + 12px)", left: "50%", transform: "translateX(-50%)" };
   if (d >= 135 && d < 225) return { right: "calc(100% + 12px)", top: "50%", transform: "translateY(-50%)" };
   return { bottom: "calc(100% + 12px)", left: "50%", transform: "translateX(-50%)" };
 };
 
 
 const Hero = () => {
-  const [active, setActive]   = useState(0);
+  const [active, setActive] = useState(0);
   const [mounted, setMounted] = useState(false);
   const containerRef = useRef(null);
   const isInView = useInView(containerRef);
@@ -61,9 +61,9 @@ const Hero = () => {
   }, [isInView]);
 
   /* ── Orbit size ── */
-  const isMob  = mounted ? window.innerWidth < 768 : false;
-  const orbit  = isMob ? 80 : 165;
-  const cSize  = isMob ? 300 : 460;
+  const isMob = mounted ? window.innerWidth < 768 : false;
+  const orbit = isMob ? 80 : 165;
+  const cSize = isMob ? 300 : 460;
 
   const nodes = FEATURES.map((f, i) => {
     const deg = START_DEG + (i / FEATURES.length) * 360;
@@ -74,20 +74,32 @@ const Hero = () => {
   return (
     <div
       ref={containerRef}
-      className="relative min-h-screen overflow-hidden"
-      style={{ background: "linear-gradient(165deg,#ffffff 0%,#f0f9ff 40%,#bae6fd 100%)" }}
+      className="
+relative
+min-h-screen
+overflow-hidden
+
+bg-[radial-gradient(circle_at_bottom_right,rgba(14,203,241,0.30)_0%,transparent_55%)]
+"
     >
       <div className="mt-20 md:mt-24" />
-
-      {/* Light-blue radial glows for depth */}
-      <div className="absolute -top-48 -right-32 w-[600px] h-[600px] rounded-full pointer-events-none blur-[160px]"
-        style={{ background: "radial-gradient(circle,rgba(56,189,248,0.12),transparent 70%)" }} />
-      <div className="absolute top-1/3 -left-32 w-[500px] h-[500px] rounded-full pointer-events-none blur-[140px]"
-        style={{ background: "radial-gradient(circle,rgba(34,211,238,0.08),transparent 70%)" }} />
-      <div className="absolute -bottom-32 right-1/4 w-[450px] h-[450px] rounded-full pointer-events-none blur-[130px]"
-        style={{ background: "radial-gradient(circle,rgba(96,165,250,0.07),transparent 70%)" }} />
+      {/* SEBI Registration Badge - Absolute positioned to top right of the section */}
+      <div className="absolute top-6 right-5 sm:right-6 hidden lg:inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-primary/8 text-primary text-sm font-bold border border-primary/20 shadow-sm z-50">
+        <m.span
+          className="w-2 h-2 rounded-full bg-primary"
+          animate={{ scale: [1, 1.5, 1], opacity: [1, 0.4, 1] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <TrendingUp className="w-4 h-4" />
+        SEBI REGI No. INA000021474
+      </div>
+      {/* Subtle clean radial glows for depth (white-focused) */}
+      <div className="absolute -top-48 -right-32 w-[600px] h-[600px] rounded-full pointer-events-none blur-[160px] opacity-20"
+        style={{ background: "radial-gradient(circle,rgba(56,189,248,0.08),transparent 70%)" }} />
 
       <section className="relative max-w-7xl mx-auto px-5 sm:px-6 pt-8 pb-10 md:pt-12 md:pb-16">
+
+
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-6 items-center">
 
           {/* ══ LEFT: Rich headline + content ══ */}
@@ -108,25 +120,22 @@ const Hero = () => {
               Institutional-Grade Investment Platform
             </div>
 
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 leading-[1.08] mb-5 tracking-tight">
-              Wealth Today,{" "}
-              <br className="hidden sm:block" />
-              <span
-                className="text-transparent bg-clip-text"
-                style={{ backgroundImage: "linear-gradient(135deg,#1d4ed8,#0891b2)" }}
-              >
-                Wealthier
-              </span>{" "}
-              Tomorrow.
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-8">
+              Wealth + Advisers, <br />
+              <span className="text-primary">Fiduciary </span> Advisor.
             </h1>
 
-            <p className="text-lg text-gray-500 mb-8 max-w-lg leading-relaxed px-1">
-              We empower individuals with professional-grade wealth management
-              tools, expert-led strategies, and institutional-level security.
+            <p className="text-xl text-gray-600 mb-10 max-w-xl leading-relaxed">
+              We empower individuals with professional-grade wealth management tools, expert-led strategies, and institutional security. Start your journey today.
             </p>
 
+            {/* <p className="text-lg text-gray-500 mb-8 max-w-lg leading-relaxed px-1">
+              We empower individuals with professional-grade wealth management
+              tools, expert-led strategies, and institutional-level security.
+            </p> */}
+
             {/* CTA row */}
-            <div className="flex flex-col sm:flex-row gap-4 mb-10">
+            {/* <div className="flex flex-col sm:flex-row gap-4 mb-10">
               <Button
                 className="h-12 md:h-14 px-8 rounded-xl text-base font-bold text-white shadow-lg shadow-primary/25 relative overflow-hidden group border-0"
                 style={{ background: "linear-gradient(135deg,#1d4ed8,#0891b2)" }}
@@ -145,21 +154,30 @@ const Hero = () => {
               >
                 View Portfolio
               </Button>
+            </div> */}
+
+            <div className="flex flex-col sm:flex-row gap-4 mb-12">
+              <Button className="h-14 px-8 bg-primary hover:bg-primary/90 text-white rounded-lg text-lg font-bold shadow-lg shadow-primary/20">
+                Explore Strategies <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+              <Button variant="outline" className="h-14 px-8 rounded-lg border-gray-200 text-gray-700 hover:bg-gray-50 text-lg font-bold">
+                View Portfolio
+              </Button>
             </div>
 
             {/* Stats strip */}
-            <div className="flex justify-between gap-2 md:gap-6 mb-6 pb-6 border-b border-gray-100">
+            {/* <div className="flex justify-between gap-2 md:gap-6 mb-6 pb-6 border-b border-gray-100">
               {[
                 { value: "₹500Cr+", label: "Assets Managed" },
-                { value: "10K+",    label: "Clients Served" },
-                { value: "15+",     label: "Years of Trust" },
+                { value: "10K+", label: "Clients Served" },
+                { value: "15+", label: "Years of Trust" },
               ].map((s, i) => (
                 <div key={i} className={`flex flex-col ${i > 0 ? "pl-3 md:pl-6 border-l border-gray-100" : ""}`}>
                   <span className="text-xl md:text-2xl font-bold text-gray-900">{s.value}</span>
                   <span className="text-[10px] md:text-xs text-gray-400 font-medium mt-0.5 whitespace-nowrap">{s.label}</span>
                 </div>
               ))}
-            </div>
+            </div> */}
 
             {/* Trust badges */}
             <div className="flex flex-wrap gap-x-6 gap-y-3">
@@ -226,7 +244,7 @@ const Hero = () => {
               {/* Orbit rings — cyan tint */}
               <m.div
                 className="absolute inset-0 rounded-full"
-                style={{ border: "1.5px solid rgba(34,211,238,0.12)" }}
+                style={{ border: "1.5px solid rgba(34,211,238,0.22)" }}
                 animate={{ rotate: 360 }}
                 transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
               />
@@ -366,6 +384,9 @@ const Hero = () => {
                 );
               })}
 
+
+
+
               {/* Center person */}
               <m.div
                 className="relative z-20 flex items-center justify-center"
@@ -388,15 +409,15 @@ const Hero = () => {
                 />
                 <div className="absolute rounded-full" style={{ width: 158, height: 158, border: "2px solid rgba(34,211,238,0.10)" }} />
 
-                  <div
-                    className="relative rounded-full overflow-hidden"
-                    style={{
-                      width: isMob ? 110 : 150,
-                      height: isMob ? 110 : 150,
-                      border: "3px solid rgba(34,211,238,0.35)",
-                      boxShadow: "0 0 30px rgba(34,211,238,0.15), 0 4px 20px rgba(0,0,0,0.4)",
-                    }}
-                  >
+                <div
+                  className="relative rounded-full overflow-hidden"
+                  style={{
+                    width: isMob ? 110 : 150,
+                    height: isMob ? 110 : 150,
+                    border: "3px solid rgba(34,211,238,0.35)",
+                    boxShadow: "0 0 30px rgba(34,211,238,0.15), 0 4px 20px rgba(0,0,0,0.4)",
+                  }}
+                >
                   <Image
                     src="/centre-person.webp"
                     alt="Wealth Advisor"

@@ -1,0 +1,31 @@
+{
+  "portfolioSummary": {
+    "kpis": [
+      { "label": "Total Invested", "value": "₹39.50 L", "icon": "FileText", "color": "red" },
+      { "label": "Current Value", "value": "₹49.52 L", "icon": "TrendingUp", "color": "green" },
+      { "label": "Total Returns", "value": "₹10.02 L", "sub": "+25.37%", "icon": "Activity", "color": "green" },
+      { "label": "XIRR", "value": "20.94%", "icon": "ShieldCheck", "color": "green" }
+    ],
+    "allocation": [
+      { "label": "Mid Cap", "funds": 2, "percentage": 15.9, "value": "₹7.87 L", "color": "bg-green-500" },
+      { "label": "ELSS", "funds": 1, "percentage": 15.7, "value": "₹7.77 L", "color": "bg-red-500" },
+      { "label": "Large Cap", "funds": 2, "percentage": 10.4, "value": "₹5.14 L", "color": "bg-orange-500" },
+      { "label": "Index Fund", "funds": 1, "percentage": 8.8, "value": "₹4.37 L", "color": "bg-blue-400" },
+      { "label": "Short Duration", "funds": 1, "percentage": 8.8, "value": "₹4.34 L", "color": "bg-teal-500" },
+      { "label": "Balanced Advantage", "funds": 1, "percentage": 8.4, "value": "₹4.18 L", "color": "bg-emerald-500" },
+      { "label": "Liquid", "funds": 1, "percentage": 8.0, "value": "₹3.97 L", "color": "bg-yellow-500" },
+      { "label": "Flexi/Multi Cap", "funds": 1, "percentage": 6.8, "value": "₹3.38 L", "color": "bg-red-400" }
+    ],
+    "strategy": {
+      "equityMix": "75.2%",
+      "debtMix": "24.8%",
+      "insight": "Your portfolio shows a strong tilt towards Mid and Large caps. Maintaining this allocation while the market cycles could yield higher risk-adjusted returns. Rebalancing is suggested if Index exposure drops below 5%."
+    }
+  },
+  "recommendations": [
+    { "type": "BUY", "fund": "HDFC Mid-Cap Opportunities Fund", "amount": "₹5,000", "frequency": "Monthly SIP", "reason": "Strategic underweight in Mid-cap" },
+    { "type": "SWITCH", "fund": "Axis Bluechip (Regular) to Direct", "amount": "Full Portfolio", "frequency": "One-time", "reason": "Cost optimization (~0.8% savings)" },
+    { "type": "REBALANCE", "fund": "Parag Parikh Flexi Cap", "amount": "₹2.50 L", "frequency": "One-time", "reason": "LTCG harvesting limit" },
+    { "type": "SELL", "fund": "Quant Small Cap Fund", "amount": "20% Holdings", "frequency": "One-time", "reason": "Profit booking at cycle peak" }
+  ]
+}
